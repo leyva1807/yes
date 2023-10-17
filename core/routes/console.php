@@ -1,6 +1,8 @@
 <?php
+// Este archivo define todos los comandos de consola basados en Closures que tu aplicación soporta.
 
 use Illuminate\Foundation\Inspiring;
+// Importamos la clase Inspiring para mostrar citas inspiradoras.
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -15,5 +17,6 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Artisan::command('inspire', function () {
+    // Este comando muestra una cita inspiradora cuando se ejecuta 'php artisan inspire'.
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');

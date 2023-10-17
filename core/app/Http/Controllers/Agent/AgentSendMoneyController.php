@@ -17,14 +17,20 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class AgentSendMoneyController extends Controller {
+    // Este controlador se encarga de las operaciones relacionadas con el envío de dinero por parte de los agentes.
+    // Este controlador se encarga de las operaciones relacionadas con el envío de dinero por parte de los agentes.
 
     public function transferHistory() {
+    // Este método muestra el historial de transferencias realizadas por el agente.
+    // Este método muestra el historial de transferencias realizadas por el agente.
         $pageTitle = 'Send Money History';
         $transfers = SendMoney::filterAgent()->with('sendingCountry', 'recipientCountry')->where('status', '!=', Status::SEND_MONEY_INITIATED)->searchable(['mtcn_number'])->latest()->paginate(getPaginate());
         return view('agent.send.transfer_history', compact('pageTitle', 'transfers'));
     }
 
     public function sendMoney() {
+    // Este método muestra la interfaz para enviar dinero.
+    // Este método muestra la interfaz para enviar dinero.
         $pageTitle          = 'Send Money';
         $sendingCountry     = Country::where('country_code', authAgent()->country_code)->with('conversionRates')->first();
         $receivingCountries = Country::receivableCountries()->where('id', '!=', @$sendingCountry->id)->get();
@@ -37,6 +43,8 @@ class AgentSendMoneyController extends Controller {
     }
 
     public function sendMoneyInsert(Request $request) {
+    // Este método se encarga de procesar la solicitud de envío de dinero.
+    // Este método se encarga de procesar la solicitud de envío de dinero.
         $rules = [
             'sending_country'   => 'required|gt:0',
             'sending_amount'    => 'required|numeric|min:0',

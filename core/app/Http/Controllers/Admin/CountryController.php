@@ -12,7 +12,9 @@ use App\Rules\FileTypeValidate;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller {
+    // Este controlador se encarga de las operaciones relacionadas con los países en el panel de administración.
     public function index() {
+    // Este método muestra la lista de países.
         $pageTitle   = 'All Countries';
         $countryList = getCountryList();
         $countries   = Country::searchable(['name', 'currency'])->orderBy('id', 'desc')->paginate(getPaginate());
@@ -20,6 +22,7 @@ class CountryController extends Controller {
     }
 
     public function store(Request $request) {
+    // Este método se encarga de almacenar un nuevo país.
         $this->validation($request);
         $country  = new Country();
         $this->saveCountry($request, $country);
@@ -28,6 +31,7 @@ class CountryController extends Controller {
     }
 
     public function update(Request $request, $id) {
+    // Este método se encarga de actualizar la información de un país existente.
         $this->validation($request, $id);
         $country  = Country::findOrFail($id);
         $this->saveCountry($request, $country);
@@ -36,6 +40,7 @@ class CountryController extends Controller {
     }
 
     public function saveCountry(Request $request, $country) {
+    // Este método se encarga de guardar la información detallada de un país.
         $countryList             = getCountryList();
         $countryCode             = $request->country_code;
         $country->name           = @$countryList->$countryCode->country;

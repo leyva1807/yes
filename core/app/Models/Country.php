@@ -9,15 +9,21 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
+    // Este modelo representa un país en la base de datos.
+    // Contiene varias relaciones y métodos para interactuar con otros modelos.
 {
     use  Searchable, GlobalStatus;
 
     public function countryServices()
+    // Este método define una relación de uno a muchos con el modelo Service.
+    // Un país puede tener múltiples servicios.
     {
         return $this->hasMany(Service::class);
     }
 
     public function conversionRates()
+    // Este método define una relación de uno a muchos con el modelo CurrencyConversionRate.
+    // Un país puede tener múltiples tasas de conversión.
     {
         return $this->hasMany(CurrencyConversionRate::class, 'from_country', 'id');
     }
@@ -28,11 +34,15 @@ class Country extends Model
     }
 
     public function sendingTransfers()
+    // Este método define una relación de uno a muchos con el modelo SendMoney.
+    // Un país puede ser el país de origen de múltiples transferencias.
     {
         return $this->hasMany(SendMoney::class, 'sending_country_id');
     }
 
     public function receivingTransfers()
+    // Este método define una relación de uno a muchos con el modelo SendMoney.
+    // Un país puede ser el país destinatario de múltiples transferencias.
     {
         return $this->hasMany(SendMoney::class, 'recipient_country_id');
     }

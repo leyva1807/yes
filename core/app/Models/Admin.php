@@ -1,4 +1,6 @@
 <?php
+    // Este modelo representa a un administrador en la aplicación.
+    // Extiende de Authenticatable para manejar la autenticación.
 
 namespace App\Models;
 
@@ -12,6 +14,7 @@ class Admin extends Authenticatable
      *
      * @var array
      */
+    // Estos atributos se ocultan cuando se convierte el modelo a un array o JSON.
     protected $hidden = [
         'password', 'remember_token',
     ];

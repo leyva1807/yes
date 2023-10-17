@@ -1,6 +1,8 @@
 <?php
+// Este archivo define todas las rutas relacionadas con el panel de administración.
 
 use Illuminate\Support\Facades\Route;
+// Importamos la clase Route para definir las rutas.
 
 Route::namespace('Auth')->group(function () {
     Route::controller('LoginController')->group(function () {

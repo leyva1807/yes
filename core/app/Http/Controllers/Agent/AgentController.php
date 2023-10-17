@@ -14,9 +14,13 @@ use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
+    // Este es el controlador principal para los agentes.
+    // Aquí se manejan varias funcionalidades como el dashboard, autenticación de dos factores, transacciones, etc.
 {
 
     public function dashboard($duration = 'today')
+    // Este método muestra el dashboard del agente.
+    // Aquí se recopilan varias estadísticas y datos para mostrar en la vista.
     {
 
         $info = getInsightDuration($duration);
@@ -69,6 +73,7 @@ class AgentController extends Controller
     }
 
     public function show2faForm()
+    // Este método muestra el formulario para configurar la autenticación de dos factores.
     {
         $general   = gs();
         $ga        = new GoogleAuthenticator();
@@ -118,6 +123,7 @@ class AgentController extends Controller
         return back()->withNotify($notify);
     }
     public function transactions(Request $request)
+    // Este método muestra el historial de transacciones del agente.
     {
         $day = transactionDuration();
         $pageTitle    = 'Transactions';
@@ -144,6 +150,7 @@ class AgentController extends Controller
         return view('agent.deposit_history', compact('pageTitle', 'deposits', 'successful', 'pending', 'rejected'));
     }
     public function kycForm()
+    // Este método muestra el formulario KYC (Conoce a tu cliente) para el agente.
     {
         if (authAgent()->kv == 2) {
             $notify[] = ['error', 'Your KYC is under review'];

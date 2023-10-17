@@ -1,4 +1,7 @@
 <?php
+    // Este controlador se encarga de gestionar los tickets de soporte para los agentes.
+    // Este es el constructor del controlador.
+    // Aquí se establecen algunas variables y middleware para el controlador.
 
 namespace App\Http\Controllers\Agent;
 

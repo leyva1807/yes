@@ -1,4 +1,7 @@
 <?php
+    // Este controlador se encarga de la autorización y verificación de los agentes.
+    // Este método muestra el formulario de autorización, que puede ser para la verificación 2FA o para mostrar un mensaje de prohibición.
+    // Este método se encarga de la verificación de la autenticación de dos factores (2FA).
 
 namespace App\Http\Controllers\Agent;
 

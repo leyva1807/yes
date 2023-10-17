@@ -20,8 +20,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller {
+    // Este es el controlador principal del panel de administración.
+    // Aquí se manejan varias funcionalidades como el dashboard, estadísticas, perfil, etc.
 
     public function dashboard() {
+    // Este método se encarga de mostrar el dashboard del panel de administración.
+    // Aquí se recopilan varias estadísticas y datos para mostrar en la vista.
         $pageTitle = 'Dashboard';
         // User Info
         $widget['total_users']             = User::count();
@@ -195,6 +199,7 @@ class AdminController extends Controller {
     }
 
     public function sendMoneyStatistics(Request $request) {
+    // Este método se encarga de manejar las estadísticas relacionadas con el envío de dinero.
 
         $sendMoney = SendMoney::where('created_at', '>=', now()->subYear())->completed()->where('sending_currency', $request->sending_currency)->where('recipient_currency', $request->recipient_currency)->get();
 
@@ -214,12 +219,14 @@ class AdminController extends Controller {
     }
 
     public function profile() {
+    // Este método muestra el perfil del administrador en el panel.
         $pageTitle = 'Profile';
         $admin     = auth('admin')->user();
         return view('admin.profile', compact('pageTitle', 'admin'));
     }
 
     public function profileUpdate(Request $request) {
+    // Este método se encarga de actualizar el perfil del administrador.
         $this->validate($request, [
             'name'  => 'required',
             'email' => 'required|email',

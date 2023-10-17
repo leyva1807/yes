@@ -1,6 +1,8 @@
 <?php
+// Este archivo define todas las rutas relacionadas con la API.
 
 use Illuminate\Support\Facades\Route;
+// Importamos la clase Route para definir las rutas.
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('Api')->name('api.')->group(function () {
+    // Este grupo de rutas está bajo el espacio de nombres 'Api' y tiene un prefijo de nombre 'api.'.
 });
